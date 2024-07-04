@@ -79,3 +79,5 @@ Events: Provide a way for a class to notify other classes or objects when someth
 Events are based on delegates and use the event keyword to define.
 Multicast Delegates: Delegates that can hold references to more than one method.
 Event Handlers: Methods that are executed in response to an event.
+
+## Microsoft Recommend EventHandler
