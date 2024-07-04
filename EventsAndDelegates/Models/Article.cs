@@ -7,11 +7,17 @@ namespace EventsAndDelegates.Models
 {
     public record Article : DomainEntity
     {
-        public Article (string title, string description, Guid authorId)
+        public Article(string title, string description, Guid authorId)
         {
             Title = title;
             Description = description;
             AuthorId = authorId;
+        }
+
+        public static Article Create(string title, string description, Guid authorId)
+        {
+            var article = new Article(title, description, authorId);
+            return article;
         }
 
         public string Title { get; init; }
@@ -32,7 +38,7 @@ namespace EventsAndDelegates.Models
 
         public Article Draft()
         {
-            return this with { IsPublished = false};
+            return this with { IsPublished = false };
         }
         public Article Delete()
         {

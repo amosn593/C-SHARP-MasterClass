@@ -23,9 +23,9 @@ static void OnLockAchievement(int points)
 }
 
 //Publisher and subscriber Mechanism
-var author = new Author("Author1", "Description 1");
-var user_1 = new User("User_1");
-var user_2 = new User("User_2");
+var author = Author.Create("Author1", "Description 1");
+var user_1 = User.Create("User_1");
+var user_2 = User.Create("User_2");
 
 //author.AddSubcriber(user_1);
 author.OnPublish += (sender, args) => user_1.Notify(args.Message);

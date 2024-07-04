@@ -10,11 +10,17 @@ namespace EventsAndDelegates.Models
         public string Name { get; init; }
         public string Description { get; init; }
 
-        public Author(string name, string description)
+        private Author(string name, string description)
         {
             Name = name;
             Description = description;
             // _subscribers = [];
+        }
+
+        public static Author Create(string name, string description)
+        {
+            var author = new Author(name, description);
+            return author;
         }
 
         public void Publish(Article article)

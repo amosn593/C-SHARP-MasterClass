@@ -10,9 +10,15 @@ namespace EventsAndDelegates.Models
     {
         public string Name { get; init; }
 
-        public User(string name)
+        private User(string name)
         {
             Name = name;
+        }
+
+        public static User Create(string name)
+        {
+            var user = new User(name);
+            return user;
         }
         public void Notify(string message)
         {
