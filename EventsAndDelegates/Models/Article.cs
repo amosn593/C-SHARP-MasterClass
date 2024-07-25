@@ -7,7 +7,7 @@ namespace EventsAndDelegates.Models
 {
     public record Article : DomainEntity
     {
-        public Article(string title, string description, Guid authorId)
+        private Article(string title, string description, Guid authorId)
         {
             Title = title;
             Description = description;

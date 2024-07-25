@@ -32,7 +32,7 @@ author.OnPublish += (sender, args) => user_1.Notify(args.Message);
 
 user_2.Subscribe(author);
 
-var article = new Article("DDD", "From eyes of a senior dev", author.Id);
+var article = Article.Create("DDD", "From eyes of a senior dev", author.Id);
 
 author.Publish(article);
 
