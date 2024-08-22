@@ -1,4 +1,6 @@
 using Microsoft.AspNetCore.Mvc;
+using RMQProducerAPI.Models;
+using RMQProducerAPI.RabbitMQ.Connection;
 
 namespace RMQProducerAPI.Controllers
 {
@@ -12,10 +14,12 @@ namespace RMQProducerAPI.Controllers
         };
 
         private readonly ILogger<WeatherForecastController> _logger;
+        private readonly ISendMessage _sendMessage;
 
-        public WeatherForecastController(ILogger<WeatherForecastController> logger)
+        public WeatherForecastController(ILogger<WeatherForecastController> logger, ISendMessage sendMessage)
         {
             _logger = logger;
+            _sendMessage = sendMessage;
         }
 
         [HttpGet(Name = "GetWeatherForecast")]
@@ -28,6 +32,20 @@ namespace RMQProducerAPI.Controllers
                 Summary = Summaries[Random.Shared.Next(Summaries.Length)]
             })
             .ToArray();
+        }
+
+        [HttpPost(Name = "PostOrder")]
+        public async Task<IActionResult> PostOrder([FromBody] OrderDto orderDto)
+        {
+            try
+            {
+                _sendMessage.PublishOrder(orderDto);
+                return Ok(orderDto);
+            }
+            catch (Exception ex)
+            {
+                return BadRequest(ex.Message);
+            }
         }
     }
 }
