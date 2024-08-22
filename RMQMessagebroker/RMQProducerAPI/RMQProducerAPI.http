@@ -1,0 +1,6 @@
+@RMQProducerAPI_HostAddress = http://localhost:5129
+
+GET {{RMQProducerAPI_HostAddress}}/weatherforecast/
+Accept: application/json
+
+###
